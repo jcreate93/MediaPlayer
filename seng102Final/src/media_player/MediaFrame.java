@@ -27,6 +27,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -111,10 +112,22 @@ public class MediaFrame extends JFrame implements MouseListener, ActionListener,
 		uploadFiles = new JButton("Upload Files");
 		uploadFiles.setIcon(new ImageIcon(
 				"D:/eclipseWorkspaces/SENG102Java/workingMediaPlayer/src/media_assets/file_upload_black_24dp.png"));
-		uploadFiles.addActionListener(this); // FIXME DONT HAVE SEPERATE ACTION LISTENER
-		listPanel.add(uploadFiles); // makes uploadFiles button visible
-		fileChooser = new JFileChooser(); // creates JFileChooser object to be used with uploadButton
-
+		uploadFiles.addActionListener(this); 
+		listPanel.add(uploadFiles); 
+		
+		
+		
+		
+		FileNameExtensionFilter imageFiles = new FileNameExtensionFilter("jpg, jpeg, png, gif", "jpg", "png", "gif", "jpeg");
+		FileNameExtensionFilter videoFiles = new FileNameExtensionFilter("MP4, MOV", "MP4", "MOV");
+		FileNameExtensionFilter musicFiles = new FileNameExtensionFilter("MP3, WAV", "MP3", "WAV");
+		fileChooser = new JFileChooser();
+		fileChooser.setFileFilter(imageFiles);
+		fileChooser.setFileFilter(videoFiles);
+		fileChooser.setFileFilter(musicFiles);
+		
+		
+		
 		JToolBar navigationToolBar = new JToolBar();
 		navigationToolBar.setOrientation(SwingConstants.VERTICAL);
 		navigationToolBar.setBackground(new Color(0xBAA48A));
@@ -122,7 +135,7 @@ public class MediaFrame extends JFrame implements MouseListener, ActionListener,
 
 		musicLabel = new JLabel();
 		musicLabel.setIcon(new ImageIcon("D:\\eclipseWorkspaces\\icons\\music_note_black_24dp.png"));
-		musicLabel.addMouseListener(this); // allows response to mouse events
+		musicLabel.addMouseListener(this); 
 		navigationToolBar.add(musicLabel);
 
 		JLabel movLabel = new JLabel("");
