@@ -89,25 +89,7 @@ public class MediaFrame extends JFrame implements MouseListener, ActionListener,
 		listPanel.setBackground(new Color(0x708090));
 		listPanel.setPreferredSize(new Dimension(1280, 720));
 
-		groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(containToolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(listPanel, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(525, Short.MAX_VALUE)));
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-										.addComponent(containToolBar, GroupLayout.PREFERRED_SIZE, 150,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(71))
-								.addGroup(groupLayout
-										.createSequentialGroup().addGap(37).addComponent(listPanel,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGap(88)));
+		groupLayout(containToolBar, listPanel);
 
 		uploadFiles = new JButton("Upload Files");
 		uploadFiles.setIcon(new ImageIcon(
@@ -133,6 +115,13 @@ public class MediaFrame extends JFrame implements MouseListener, ActionListener,
 		navigationToolBar.setBackground(new Color(0xBAA48A));
 		containToolBar.add(navigationToolBar);
 
+		labelsGUI(containToolBar, navigationToolBar);
+
+		getContentPane().setLayout(groupLayout);
+
+	}
+
+	private void labelsGUI(JToolBar containToolBar, JToolBar navigationToolBar) {
 		musicLabel = new JLabel();
 		musicLabel.setIcon(new ImageIcon("D:\\eclipseWorkspaces\\icons\\music_note_black_24dp.png"));
 		musicLabel.addMouseListener(this); 
@@ -156,9 +145,28 @@ public class MediaFrame extends JFrame implements MouseListener, ActionListener,
 		playLabel.setIcon(new ImageIcon("D:\\eclipseWorkspaces\\icons\\play_circle_black_24dp.png"));
 		playLabel.addMouseListener(this);
 		mediaToolBar.add(playLabel);
+	}
 
-		getContentPane().setLayout(groupLayout);
-
+	private void groupLayout(JToolBar containToolBar, JPanel listPanel) {
+		groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addComponent(containToolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED).addComponent(listPanel, GroupLayout.PREFERRED_SIZE,
+								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(525, Short.MAX_VALUE)));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+										.addComponent(containToolBar, GroupLayout.PREFERRED_SIZE, 150,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(71))
+								.addGroup(groupLayout
+										.createSequentialGroup().addGap(37).addComponent(listPanel,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addGap(88)));
 	}
 
 	public void mouseClicked1(MouseEvent d) {
